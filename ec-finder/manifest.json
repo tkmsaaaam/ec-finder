@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "version": "1.0",
+  "name": "ec-finder",
+  "content_scripts": [
+    {
+      "matches": ["https://www.amazon.co.jp/*"],
+      "js": ["src/amazon.js"]
+    },
+    {
+      "matches": ["https://*.rakuten.co.jp/*","https://rakuten.co.jp/*"],
+      "js": ["src/rakuten.js"]
+    }
+  ],
+  "action": {
+    "default_title": "EC finder",
+    "default_popup": "src/popup.html"
+  }
+}
