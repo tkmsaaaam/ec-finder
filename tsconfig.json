@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "./ec-finder/build",
+    "allowJs": true,
+    "target": "ES2015",
+    "module": "commonjs",
+    "strict": true
+  },
+  "include": [
+    "./ec-finder/src/**/*"
+  ]
+}

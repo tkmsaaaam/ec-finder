@@ -1,0 +1,32 @@
+{
+  "name": "ec-finder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkmsaaaam/ec-finder.git"
+  },
+  "author": "tkmsaaaam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tkmsaaaam/ec-finder/issues"
+  },
+  "homepage": "https://github.com/tkmsaaaam/ec-finder#readme",
+  "devDependencies": {
+    "@types/chrome": "^0.0.197",
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "@typescript-eslint/parser": "^5.40.0",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.0.1",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.4"
+  }
+}
