@@ -10,15 +10,7 @@
 	document.getElementsByTagName('button')[1].addEventListener('click', e => {
 		chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
 			chrome.tabs.sendMessage(tabs[0].id, { message: 'getTitle' }, response => {
-				let word = '';
-				console.log(response);
-				for (let t of response) {
-					if (t === ' ' || t === '　') {
-						word += '+';
-					} else {
-						word += t;
-					}
-				}
+				const word = response.replaceAll(' ' || '　', '+');
 				chrome.tabs.create({ url: AMAZON + word });
 			});
 		});
@@ -26,14 +18,7 @@
 	document.getElementsByTagName('button')[2].addEventListener('click', e => {
 		chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
 			chrome.tabs.sendMessage(tabs[0].id, { message: 'getTitle' }, response => {
-				let word = '';
-				for (let t of response) {
-					if (t === ' ' || t === '　') {
-						word += '+';
-					} else {
-						word += t;
-					}
-				}
+				const word = response.replaceAll(' ' || '　', '+');
 				chrome.tabs.create({ url: RAKUTEN + word });
 			});
 		});
