@@ -5,11 +5,11 @@
   "content_scripts": [
     {
       "matches": ["https://www.amazon.co.jp/*"],
-      "js": ["src/amazon.js"]
+      "js": ["build/amazon.js"]
     },
     {
       "matches": ["https://*.rakuten.co.jp/*","https://rakuten.co.jp/*"],
-      "js": ["src/rakuten.js"]
+      "js": ["build/rakuten.js"]
     }
   ],
   "action": {

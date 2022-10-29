@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "prettier --write 'ec-finder/src/**/*.js'",
+    "lint": "prettier --write 'ec-finder/src/**/*.ts'",
+    "compile": "npm run lint && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
