@@ -21,7 +21,7 @@
 					tabs[0].id as number,
 					{ message: 'getTitle' },
 					(response): void => {
-						const word = response.replaceAll(' ' || '　', '+');
+						const word: string = response.replaceAll(' ' || '　', '+');
 						chrome.tabs.create({ url: AMAZON + word }).then();
 					}
 				);
