@@ -1,3 +1,7 @@
+const makeQueryParam = (word: string): string => {
+	return word.replaceAll(' ' || '　', '+');
+};
+
 ((): void => {
 	const RAKUTEN: string = 'https://search.rakuten.co.jp/search/mall/';
 	const AMAZON: string = 'https://www.amazon.co.jp/s?k=';
@@ -5,9 +9,9 @@
 		document.getElementsByTagName('button')[0] as HTMLButtonElement
 	).addEventListener('click', (e: MouseEvent): void => {
 		e.preventDefault();
-		const word: string = (
-			document.getElementsByTagName('input')[0] as HTMLInputElement
-		).value;
+		const word: string = makeQueryParam(
+			(document.getElementsByTagName('input')[0] as HTMLInputElement).value
+		);
 		chrome.tabs.create({ url: RAKUTEN + word }).then();
 		chrome.tabs.create({ url: AMAZON + word }).then();
 	});
@@ -21,7 +25,7 @@
 					tabs[0].id as number,
 					{ message: 'getTitle' },
 					(response): void => {
-						const word: string = response.replaceAll(' ' || '　', '+');
+						const word: string = makeQueryParam(response);
 						chrome.tabs.create({ url: AMAZON + word }).then();
 					}
 				);
@@ -38,7 +42,7 @@
 					tabs[0].id as number,
 					{ message: 'getTitle' },
 					(response): void => {
-						const word: string = response.replaceAll(' ' || '　', '+');
+						const word: string = makeQueryParam(response);
 						chrome.tabs.create({ url: RAKUTEN + word }).then();
 					}
 				);
