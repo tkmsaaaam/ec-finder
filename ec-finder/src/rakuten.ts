@@ -1,4 +1,4 @@
-(() => {
+((): void => {
 	chrome.runtime.onMessage.addListener((request, _, sendResponse): void => {
 		if (request.message === 'getTitle') {
 			sendResponse(
