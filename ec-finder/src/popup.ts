@@ -1,10 +1,23 @@
+const ALL = 'ALL';
+const RAKUTEN = 'RAKUTEN';
+const AMAZON = 'AMAZON';
+
 const makeQueryParam = (word: string): string => {
 	return word.replaceAll(' ' || '　', '+');
 };
 
+const createTabs = (word: string, site: string): void => {
+	if (site === RAKUTEN || site === ALL) {
+		chrome.tabs
+			.create({ url: 'https://search.rakuten.co.jp/search/mall/' + word })
+			.then();
+	}
+	if (site === AMAZON || site === ALL) {
+		chrome.tabs.create({ url: 'https://www.amazon.co.jp/s?k=' + word }).then();
+	}
+};
+
 ((): void => {
-	const RAKUTEN: string = 'https://search.rakuten.co.jp/search/mall/';
-	const AMAZON: string = 'https://www.amazon.co.jp/s?k=';
 	(
 		document.getElementsByTagName('button')[0] as HTMLButtonElement
 	).addEventListener('click', (e: MouseEvent): void => {
@@ -12,8 +25,7 @@ const makeQueryParam = (word: string): string => {
 		const word: string = makeQueryParam(
 			(document.getElementsByTagName('input')[0] as HTMLInputElement).value
 		);
-		chrome.tabs.create({ url: RAKUTEN + word }).then();
-		chrome.tabs.create({ url: AMAZON + word }).then();
+		createTabs(word, ALL);
 	});
 	(
 		document.getElementsByTagName('button')[1] as HTMLButtonElement
@@ -25,8 +37,7 @@ const makeQueryParam = (word: string): string => {
 					tabs[0].id as number,
 					{ message: 'getTitle' },
 					(response): void => {
-						const word: string = makeQueryParam(response);
-						chrome.tabs.create({ url: AMAZON + word }).then();
+						createTabs(makeQueryParam(response), AMAZON);
 					}
 				);
 			}
@@ -42,8 +53,7 @@ const makeQueryParam = (word: string): string => {
 					tabs[0].id as number,
 					{ message: 'getTitle' },
 					(response): void => {
-						const word: string = makeQueryParam(response);
-						chrome.tabs.create({ url: RAKUTEN + word }).then();
+						createTabs(makeQueryParam(response), RAKUTEN);
 					}
 				);
 			}
