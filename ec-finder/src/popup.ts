@@ -30,16 +30,12 @@ const siteList: SiteList = [
 	},
 ];
 
-const makeQueryParam = (word: string): string => {
-	return word.replaceAll(' ' || '　', '+');
-};
-
 ((): void => {
 	SEARCH_BUTTON.addEventListener('click', (e: MouseEvent): void => {
 		e.preventDefault();
-		const word: string = makeQueryParam(
-			(document.getElementsByTagName('input')[0] as HTMLInputElement).value
-		);
+		const word: string = (
+			document.getElementsByTagName('input')[0] as HTMLInputElement
+		).value.replaceAll(' ' || '　', '+');
 		chrome.tabs.create({ url: AMAZON_URL + word }).then();
 		chrome.tabs.create({ url: RAKUTEN_URL + word }).then();
 	});
@@ -53,7 +49,9 @@ const makeQueryParam = (word: string): string => {
 						{ message: 'getTitle' },
 						(response): void => {
 							chrome.tabs
-								.create({ url: site.url + makeQueryParam(response) })
+								.create({
+									url: site.url + response.replaceAll(' ' || '　', '+'),
+								})
 								.then();
 						}
 					);
