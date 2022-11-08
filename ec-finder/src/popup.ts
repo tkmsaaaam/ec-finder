@@ -11,12 +11,11 @@ const RAKUTEN_BUTTON: HTMLButtonElement =
 const RAKUTEN_URL: string = 'https://search.rakuten.co.jp/search/mall/';
 const AMAZON_URL: string = 'https://www.amazon.co.jp/s?k=';
 
-type SiteList = Site[];
-type Site = {
+type SiteList = {
 	name: string;
 	html: HTMLButtonElement;
 	url: string;
-};
+}[];
 const siteList: SiteList = [
 	{
 		name: AMAZON,
@@ -36,8 +35,9 @@ const siteList: SiteList = [
 		const word: string = (
 			document.getElementsByTagName('input')[0] as HTMLInputElement
 		).value.replaceAll(' ' || '　', '+');
-		chrome.tabs.create({ url: AMAZON_URL + word }).then();
-		chrome.tabs.create({ url: RAKUTEN_URL + word }).then();
+		for (let site of siteList) {
+			chrome.tabs.create({ url: site.url + word }).then();
+		}
 	});
 	for (let site of siteList) {
 		site.html.addEventListener('click', (): void => {
