@@ -44,8 +44,9 @@ const siteList: SiteList = [
 			chrome.tabs.query(
 				{ active: true, lastFocusedWindow: true },
 				(tabs: chrome.tabs.Tab[]): void => {
+					if (!tabs[0].id) return;
 					chrome.tabs.sendMessage(
-						tabs[0].index,
+						tabs[0].id,
 						{ message: 'getTitle' },
 						(response): void => {
 							chrome.tabs
