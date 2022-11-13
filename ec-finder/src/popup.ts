@@ -30,6 +30,16 @@ const siteList: SiteList = [
 ];
 
 ((): void => {
+	for (let site of siteList) {
+		chrome.tabs.query(
+			{ active: true, lastFocusedWindow: true },
+			(tabs: chrome.tabs.Tab[]): void => {
+				if (!tabs[0].url) return;
+				if (tabs[0].url.includes(site.name.toLowerCase()))
+					site.html.disabled = true;
+			}
+		);
+	}
 	SEARCH_BUTTON.addEventListener('click', (e: MouseEvent): void => {
 		e.preventDefault();
 		const word: string = (

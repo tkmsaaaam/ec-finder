@@ -2,6 +2,7 @@
   "manifest_version": 3,
   "version": "1.0",
   "name": "ec-finder",
+  "permissions": ["tabs"],
   "content_scripts": [
     {
       "matches": ["https://www.amazon.co.jp/*"],
