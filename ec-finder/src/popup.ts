@@ -31,11 +31,16 @@ const siteList: SiteList = [
 		.getElementsByTagName('button')[0]
 		.addEventListener('click', (e: MouseEvent): void => {
 			e.preventDefault();
-			const word: string = (
-				document.getElementsByTagName('input')[0] as HTMLInputElement
-			).value.replaceAll(' ' || '　', '+');
 			for (let site of siteList) {
-				chrome.tabs.create({ url: site.url + word }).then();
+				chrome.tabs
+					.create({
+						url:
+							site.url +
+							(
+								document.getElementsByTagName('input')[0] as HTMLInputElement
+							).value.replaceAll(' ' || '　', '+'),
+					})
+					.then();
 			}
 		});
 	for (let site of siteList) {
