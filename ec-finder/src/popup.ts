@@ -1,9 +1,3 @@
-const RAKUTEN: string = 'RAKUTEN';
-const AMAZON: string = 'AMAZON';
-
-const RAKUTEN_URL: string = 'https://search.rakuten.co.jp/search/mall/';
-const AMAZON_URL: string = 'https://www.amazon.co.jp/s?k=';
-
 type SiteList = {
 	name: string;
 	url: string;
@@ -11,13 +5,13 @@ type SiteList = {
 }[];
 const siteList: SiteList = [
 	{
-		name: AMAZON,
-		url: AMAZON_URL,
+		name: 'AMAZON',
+		url: 'https://www.amazon.co.jp/s?k=',
 		id: 1,
 	},
 	{
-		name: RAKUTEN,
-		url: RAKUTEN_URL,
+		name: 'RAKUTEN',
+		url: 'https://search.rakuten.co.jp/search/mall/',
 		id: 2,
 	},
 ];
